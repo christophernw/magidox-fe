@@ -71,15 +71,14 @@ const Search = ({ searchResult, spellcheck, showSpellcheck, duration }) => {
                     key={idx}
                     title={`Document with title: ${val.id}`}
                     desc={highlighted}
-                    url={`collection\\${val.path}`}
+                    url={`collection/${val.path}`}
                   ></SearchResultComponent>
                 );
               })}
             </div>
             <BoxComponent
               name={searchResult[0].id}
-              url={`${searchResult[0].path}`}
-              query={q}
+              body={highlight(searchResult[0].excerpt, q)}
             ></BoxComponent>
             
           </div>
@@ -123,9 +122,9 @@ export async function getServerSideProps(context) {
       }
     );
     if (res.data.results) resultList = res.data.results;
-    // console.log("============================")
-    // console.log(resultList[0].path.split('\\'))
-    // console.log(resultList)
+    console.log("============================")
+    console.log(resultList[0].path.split('\\'))
+    console.log(resultList)
   } catch (e) {}
   const duration = performance.now() - start;
 

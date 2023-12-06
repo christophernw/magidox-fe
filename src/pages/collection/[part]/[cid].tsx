@@ -20,7 +20,7 @@ const Collection = ({ content }) => {
         <SearchBar showLogo={true} defaultValue={q}></SearchBar>
       </div>
       <h1 className="font-bold text-center">
-        Collection: {part}\{cid}
+        Collection: {part}/{cid}
       </h1>
       <p className={'text-sm p-5 text-justify'}>{content}</p>
     </Main>

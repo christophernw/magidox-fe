@@ -16,28 +16,13 @@ import { AppConfig } from '@/utils/AppConfig';
 import { highlight } from '@/utils/highlight';
 
 const COLLECTION_API = `${AppConfig.base_backend}/top`;
-export default function BoxComponent({ name, url, query }) {
-  const splitted = url.split('\\');
-  // console.log("asdfasdfasdf")
-  // console.log(url)
-  const part = splitted[splitted.length - 2];
-  const cid = splitted[splitted.length - 1];
-  const [desc, setDesc] = useState('');
-  axios
-    .post(COLLECTION_API, {
-      part: `${part}`,
-      cid: `${cid}`,
-    })
-    .then((res) => {
-      setDesc(highlight(res.data.content, query));
-    });
-
+export default function BoxComponent({ name, body}) {
   return (
     <Card className="lg:w-[40vw] z-[0] static h-fit p-3 m-3">
       <CardBody>
         <div className="font-bold text-xl text-blue-600">📚 Top Result</div>
         <div className={'font-extrabold'}>{name}</div>
-        <div className={'text-xs'}>{parse(desc)}</div>
+        <div className={'text-xs'}>{parse(body)}</div>
         <hr className="my-3" />
       </CardBody>
     </Card>
